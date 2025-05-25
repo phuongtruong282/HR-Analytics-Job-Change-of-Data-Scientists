@@ -152,6 +152,21 @@ enrollies_data = read_data('ggsheet','1VCkHwBjJGRJ21asd9pxW4_0z2PWuKhbLR3gUHm-p4
 |  3 |         33241 | Laura Davis   | city_115 | unknown  |
 |  4 |           666 | Alex Martinez | city_162 | Male     |
 
+#### 2.3 Data cleaning
+**Handling missing values** The number of missing values in the gender column accounts for 23.5% of the total records. Therefore, it is necessary to handle these missing values by replacing them with 'Unknown' to avoid data bias.
+```python
+# Replace missing values (NaN) in the 'gender' column with the string 'unknown'
+enrollies_data['gender'] = enrollies_data['gender'].fillna('unknown')
+```
+**Checking consistency**
+```python
+# Display all unique values in the 'gender' column
+enrollies_data['gender'].unique()
+# Display all unique values in the 'city' column
+enrollies_data['city'].unique()
+```
+
+
 
 
 
