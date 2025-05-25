@@ -53,3 +53,37 @@ This table contains the following columns:
 
 - last_new_job: Represents the number of years since the enrollee's last job change. Examples include never, >4, 1, etc.
 
+### Training hours
+
+From LMS system's database you can retrieve a number of training hours for each student that they have completed.
+
+Database credentials:
+
+- Database type: MySQL
+- Host: 112.213.86.31
+- Port: 3360
+- Login: etl_practice
+- Password: 550814
+- Database name: company_course
+- Table name: training_hours
+
+### City development index
+Another source that can be usefull is the table of City development index.
+
+The City Development Index (CDI) is a measure designed to capture the level of development in cities. It may be significant for the resulting prediction of student's employment motivation.
+
+It is stored here: https://sca-programming-school.github.io/city_development_index/index.html
+
+### Employment
+From LMS database you can also retrieve the fact of employment. If student is marked as employed, it means that this student started to work in our company after finishing the course.
+
+Database credentials:
+
+- Database type: MySQL
+- Host: 112.213.86.31
+- Port: 3360
+- Login: etl_practice
+- Password: 550814
+- Database name: company_course
+- Table name: employment
+
