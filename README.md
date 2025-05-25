@@ -239,12 +239,97 @@ working_experience = read_data('csv','/content/work_experience.csv')
 - Replace missing values in the 'company_type' column, 'company_size' column with the string 'unknown'. The number of missing values in these two columns is significant, so it is necessary to fill them with 'Unknown' to avoid bias.
 
 **Checking consistency**
+Checking and Fixing Consistency of 'experience' column, 'company_size' column, 'company_type' column, 'last_new_job' column
 
 **Fixing Data Types**
 
 ```python
 # Automatically infer and convert the data types of all columns to the most appropriate types
 working_experience = working_experience.convert_dtypes()
+```
+### 5. Training hours
+
+#### 5.1 Read the data
+
+```pthon
+training_hours = read_data('sql', user_name='etl_practice', pw='550814', server='112.213.86.31', port='3360', db_name='company_course', table_name='training_hours')
+```
+#### 5.2 Data overview
+
+**Display a summary of the DataFrame, including the number of non-null entries, column types**
+
+![](images/training.png)
+
+**Display the first 5 rows of the DataFrame to quickly preview the data**
+
+|    |   enrollee_id |   training_hours |
+|---:|--------------:|-----------------:|
+|  0 |          8949 |               36 |
+|  1 |         29725 |               47 |
+|  2 |         11561 |               83 |
+|  3 |         33241 |               52 |
+|  4 |           666 |                8 |
+
+### 6. City development index
+
+#### 6.1 Read the data
+
+```pthon
+city_index = read_data('html','https://sca-programming-school.github.io/city_development_index/index.html',table_index=0)
+```
+#### 6.2 Data overview
+
+**Display a summary of the DataFrame, including the number of non-null entries, column types**
+
+![](images/city.png)
+
+**Display the first 5 rows of the DataFrame to quickly preview the data**
+
+|    | City     |   City Development Index |
+|---:|:---------|-------------------------:|
+|  0 | city_103 |                    0.92  |
+|  1 | city_40  |                    0.776 |
+|  2 | city_21  |                    0.624 |
+|  3 | city_115 |                    0.789 |
+|  4 | city_162 |                    0.767 |
+
+### 7. Employment
+
+#### 7.1 Read the data
+
+```pthon
+employment = read_data('sql', user_name='etl_practice', pw='550814', server='112.213.86.31', port='3360', db_name='company_course',table_name='employment')
+```
+#### 7.2 Data overview
+
+**Display a summary of the DataFrame, including the number of non-null entries, column types**
+
+![](images/employment.png)
+
+**Display the first 5 rows of the DataFrame to quickly preview the data**
+
+|    |   enrollee_id |   employed |
+|---:|--------------:|-----------:|
+|  0 |             1 |          0 |
+|  1 |             2 |          1 |
+|  2 |             4 |          0 |
+|  3 |             5 |          0 |
+|  4 |             7 |          0 |
+
+### 8. Load data into database
+
+```python
+# Define the SQLite database file path
+db_name = "enrollee_datawarehouse.db"
+# Create an SQLite database connection engine
+engine = create_engine(f'sqlite:///{db_name}')
+# Save each DataFrame to the SQLite database, replacing the existing tables if they exist
+enrollies_data.to_sql("enrollies_data", engine,if_exists="replace")
+enrollies_education.to_sql("enrollies_education", engine,if_exists="replace")
+working_experience.to_sql("working_experience", engine, if_exists="replace")
+training_hours.to_sql("training_hours", engine,if_exists="replace")
+city_index.to_sql("city_index", engine,if_exists="replace")
+employment.to_sql("employment", engine,if_exists="replace")
 ```
 
 
