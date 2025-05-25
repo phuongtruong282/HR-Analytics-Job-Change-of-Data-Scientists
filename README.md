@@ -1,4 +1,4 @@
-# HR Analytics: Job Change of Data Scientists
+# ETL PROCESS: HR Analytics - Job Change of Data Scientists
 ## Intorduction
 
 A company which is active in Big Data and Data Science wants to hire data scientists among people who successfully pass some courses which conduct by the company.
@@ -86,4 +86,6 @@ Database credentials:
 - Password: 550814
 - Database name: company_course
 - Table name: employment
+
+
 
