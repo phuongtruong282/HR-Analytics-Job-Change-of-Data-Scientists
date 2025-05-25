@@ -165,11 +165,86 @@ enrollies_data['gender'].unique()
 # Display all unique values in the 'city' column
 enrollies_data['city'].unique()
 ```
+**Fixing Data Types**
 
+```python
+# Automatically infer and convert the data types of all columns to the most appropriate types
+enrollies_data = enrollies_data.convert_dtypes()
+```
+### 3. Enrollies' education
 
+#### 3.1 Read the data
 
+```pthon
+# Read the 'enrollies_education.xlsx' file from the specified path into a Pandas DataFrame
+enrollies_education = read_data('excel','/content/enrollies_education.xlsx')
+```
+#### 3.2 Data overview
 
+**Display a summary of the DataFrame, including the number of non-null entries, column types**
 
+![](images/education.png)
 
+**Display the first 5 rows of the DataFrame to quickly preview the data**
+
+|    |   enrollee_id | enrolled_university   | education_level   | major_discipline   |
+|---:|--------------:|:----------------------|:------------------|:-------------------|
+|  0 |          8949 | no_enrollment         | Graduate          | STEM               |
+|  1 |         29725 | no_enrollment         | Graduate          | STEM               |
+|  2 |         11561 | Full time course      | Graduate          | STEM               |
+|  3 |         33241 | no_enrollment         | Graduate          | Business Degree    |
+|  4 |           666 | no_enrollment         | Masters           | STEM               |
+
+#### 3.3 Data cleaning
+**Handling missing values:** The proportion of missing data in the columns is less than 15% of the total records, which is considered moderate. Therefore, it is acceptable to fill the missing values with the mode.
+
+**Checking consistency**
+
+- Replace 'no_enrollment' with 'no enrollment' and convert all text in the 'enrolled_university' column to lowercase.
+- Convert all text in the 'major_discipline' column to uppercase
+  
+**Fixing Data Types**
+
+```python
+# Automatically infer and convert the data types of all columns to the most appropriate types
+enrollies_education = enrollies_education.convert_dtypes()
+```
+### 4. Enrollies' working experience
+
+#### 4.1 Read the data
+
+```pthon
+# Read the 'work_experience.csv' file from the specified path into a Pandas DataFrame
+working_experience = read_data('csv','/content/work_experience.csv')
+```
+#### 4.2 Data overview
+
+**Display a summary of the DataFrame, including the number of non-null entries, column types**
+
+![](images/experience.png)
+
+**Display the first 5 rows of the DataFrame to quickly preview the data**
+
+|    |   enrollee_id | relevent_experience     |   experience | company_size   | company_type   |   last_new_job |
+|---:|--------------:|:------------------------|-------------:|:---------------|:---------------|---------------:|
+|  0 |          8949 | Has relevent experience |           21 | unknown        | UNKNOWN        |              1 |
+|  1 |         29725 | No relevent experience  |           15 | 50-99          | PVT LTD        |              5 |
+|  2 |         11561 | No relevent experience  |            5 | unknown        | UNKNOWN        |              0 |
+|  3 |         33241 | No relevent experience  |            0 | unknown        | PVT LTD        |              0 |
+|  4 |           666 | Has relevent experience |           21 | 50-99          | FUNDED STARTUP |              4 |
+
+#### 4.3 Data cleaning
+**Handling missing values:** 
+- Replace missing values in the 'experience' column, 'last_new_job' column with the most frequent value (mode) of that column. Since the proportion of missing data in the columns is less than 15% of the total records, which is considered moderate. Therefore, it is acceptable to fill the missing values with the mode.
+- Replace missing values in the 'company_type' column, 'company_size' column with the string 'unknown'. The number of missing values in these two columns is significant, so it is necessary to fill them with 'Unknown' to avoid bias.
+
+**Checking consistency**
+
+**Fixing Data Types**
+
+```python
+# Automatically infer and convert the data types of all columns to the most appropriate types
+working_experience = working_experience.convert_dtypes()
+```
 
 
